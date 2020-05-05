@@ -85,10 +85,12 @@ DONE
      echo "!!!                                                                    !!!"
      echo "!!!  Через пять минут выполнится скрипт, завершающий перенос системы   !!!"
      echo "!!! Для проверки статуса RAID-массива выполните watch cat /proc/mdstat !!!"
+     echo "!!!            (не забудьте зайти в систему 'vagrant ssh'              !!!"
+     echo "!!!                      Спасибо за проверку!                          !!!"
      echo "!!!                                                                    !!!"
      echo "!!!====================================================================!!!"
 
-     at -f /home/vagrant/stage-2.sh now + 5 minutes > /dev/null 2>&1
+     chroot /mnt sh -c "at -f /home/vagrant/stage-2.sh now + 5 minutes > /dev/null 2>&1"
      shutdown -r > /dev/null 2>&1
    SHELL
 end
